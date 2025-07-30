@@ -54,20 +54,36 @@ function App() {
       ));
       setError(null);
     } catch (err) {
-      setError('Không thể cập nhật');
-      console.error('Error updating task:', err);
+      if (err.response && err.response.status === 404) {
+        // Task not found, refresh the list
+        fetchTasks();
+      } else {
+        setError('Không thể cập nhật');
+        console.error('Error updating task:', err);
+      }
     }
   };
 
   // Delete task
   const deleteTask = async (id) => {
     try {
-      await axios.delete(`${API_BASE_URL}/tasks/${id}`);
+      console.log('Attempting to delete task:', id);
+      const response = await axios.delete(`${API_BASE_URL}/tasks/${id}`);
+      console.log('Delete response:', response.data);
+      
+      // Remove from local state
       setTasks(tasks.filter(task => task._id !== id));
       setError(null);
     } catch (err) {
-      setError('Không thể xóa');
       console.error('Error deleting task:', err);
+      
+      if (err.response && err.response.status === 404) {
+        // Task not found, remove from local state anyway
+        setTasks(tasks.filter(task => task._id !== id));
+        console.log('Task not found on server, removed from local state');
+      } else {
+        setError('Không thể xóa');
+      }
     }
   };
 
