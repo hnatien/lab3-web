@@ -10,7 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #f5f5f5;
   min-height: 100vh;
   padding: 20px;
 }
@@ -24,27 +24,27 @@ code {
   max-width: 800px;
   margin: 0 auto;
   background: white;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
 .header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #333;
   color: white;
   padding: 30px;
   text-align: center;
 }
 
 .header h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 10px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .header p {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1rem;
+  opacity: 0.8;
 }
 
 .todo-form {
@@ -59,7 +59,7 @@ code {
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  font-weight: 600;
+  font-weight: 500;
   color: #333;
 }
 
@@ -67,53 +67,52 @@ code {
 .form-group textarea {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid #e1e5e9;
-  border-radius: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   font-size: 16px;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.2s ease;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #666;
 }
 
 .btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #333;
   color: white;
   border: none;
   padding: 12px 24px;
-  border-radius: 10px;
+  border-radius: 4px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  background: #555;
 }
 
 .btn:active {
-  transform: translateY(0);
+  background: #222;
 }
 
 .btn-secondary {
-  background: #6c757d;
+  background: #666;
 }
 
 .btn-secondary:hover {
-  box-shadow: 0 10px 20px rgba(108, 117, 125, 0.3);
+  background: #777;
 }
 
 .btn-danger {
-  background: #dc3545;
+  background: #333;
 }
 
 .btn-danger:hover {
-  box-shadow: 0 10px 20px rgba(220, 53, 69, 0.3);
+  background: #555;
 }
 
 .todo-list {
@@ -121,27 +120,26 @@ code {
 }
 
 .todo-item {
-  background: #f8f9fa;
-  border-radius: 15px;
+  background: #fafafa;
+  border-radius: 4px;
   padding: 20px;
   margin-bottom: 15px;
-  border-left: 4px solid #667eea;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-left: 3px solid #333;
+  transition: box-shadow 0.2s ease;
 }
 
 .todo-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .todo-item.completed {
-  border-left-color: #28a745;
+  border-left-color: #666;
   opacity: 0.7;
 }
 
 .todo-item.completed .todo-title {
   text-decoration: line-through;
-  color: #6c757d;
+  color: #666;
 }
 
 .todo-header {
@@ -152,16 +150,16 @@ code {
 }
 
 .todo-title {
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 500;
   color: #333;
   margin-bottom: 5px;
 }
 
 .todo-description {
-  color: #6c757d;
+  color: #666;
   margin-bottom: 15px;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 .todo-actions {
@@ -171,44 +169,44 @@ code {
 }
 
 .todo-date {
-  font-size: 0.85rem;
-  color: #adb5bd;
+  font-size: 0.8rem;
+  color: #999;
   margin-top: 10px;
 }
 
 .loading {
   text-align: center;
   padding: 40px;
-  color: #6c757d;
+  color: #666;
 }
 
 .error {
-  background: #f8d7da;
-  color: #721c24;
+  background: #f8f8f8;
+  color: #333;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 4px;
   margin: 20px;
-  border: 1px solid #f5c6cb;
+  border: 1px solid #ddd;
 }
 
 .success {
-  background: #d4edda;
-  color: #155724;
+  background: #f8f8f8;
+  color: #333;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 4px;
   margin: 20px;
-  border: 1px solid #c3e6cb;
+  border: 1px solid #ddd;
 }
 
 .empty-state {
   text-align: center;
   padding: 60px 20px;
-  color: #6c757d;
+  color: #666;
 }
 
 .empty-state h3 {
   margin-bottom: 10px;
-  color: #495057;
+  color: #333;
 }
 
 .form-row {
@@ -233,6 +231,6 @@ code {
   }
   
   .header h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 }

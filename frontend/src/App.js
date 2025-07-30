@@ -21,7 +21,7 @@ function App() {
       setTasks(response.data);
       setError(null);
     } catch (err) {
-      setError('Failed to fetch tasks. Please check if the backend server is running.');
+      setError('Không thể tải danh sách. Kiểm tra server.');
       console.error('Error fetching tasks:', err);
     } finally {
       setLoading(false);
@@ -32,7 +32,7 @@ function App() {
   const addTask = async (e) => {
     e.preventDefault();
     if (!newTask.title.trim()) {
-      setError('Task title is required');
+      setError('Cần nhập tên công việc');
       return;
     }
 
@@ -40,13 +40,13 @@ function App() {
       const response = await axios.post(`${API_BASE_URL}/tasks`, newTask);
       setTasks([response.data, ...tasks]);
       setNewTask({ title: '', description: '' });
-      setSuccess('Task added successfully!');
+      setSuccess('Đã thêm công việc!');
       setError(null);
       
       // Clear success message after 3 seconds
       setTimeout(() => setSuccess(null), 3000);
     } catch (err) {
-      setError('Failed to add task');
+      setError('Không thể thêm công việc');
       console.error('Error adding task:', err);
     }
   };
@@ -60,34 +60,34 @@ function App() {
       ));
       setError(null);
     } catch (err) {
-      setError('Failed to update task');
+      setError('Không thể cập nhật');
       console.error('Error updating task:', err);
     }
   };
 
   // Delete task
   const deleteTask = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this task?')) {
+    if (!window.confirm('Xóa công việc này?')) {
       return;
     }
 
     try {
       await axios.delete(`${API_BASE_URL}/tasks/${id}`);
       setTasks(tasks.filter(task => task._id !== id));
-      setSuccess('Task deleted successfully!');
+      setSuccess('Đã xóa!');
       setError(null);
       
       // Clear success message after 3 seconds
       setTimeout(() => setSuccess(null), 3000);
     } catch (err) {
-      setError('Failed to delete task');
+      setError('Không thể xóa');
       console.error('Error deleting task:', err);
     }
   };
 
   // Format date
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    return new Date(dateString).toLocaleDateString('vi-VN', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
@@ -103,8 +103,8 @@ function App() {
   return (
     <div className="container">
       <div className="header">
-        <h1>Todo App</h1>
-        <p>Manage your tasks with ease</p>
+        <h1>Danh sách công việc</h1>
+        <p>Quản lý công việc đơn giản</p>
       </div>
 
       {/* Add Task Form */}
@@ -112,30 +112,30 @@ function App() {
         <form onSubmit={addTask}>
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="title">Task Title *</label>
+              <label htmlFor="title">Tên công việc *</label>
               <input
                 type="text"
                 id="title"
                 value={newTask.title}
                 onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-                placeholder="Enter task title..."
+                placeholder="Nhập tên công việc..."
                 required
               />
             </div>
             <div className="form-group">
               <button type="submit" className="btn">
-                Add Task
+                Thêm
               </button>
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="description">Description (Optional)</label>
+            <label htmlFor="description">Ghi chú (tùy chọn)</label>
             <textarea
               id="description"
               value={newTask.description}
               onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
-              placeholder="Enter task description..."
-              rows="3"
+              placeholder="Ghi chú thêm..."
+              rows="2"
             />
           </div>
         </form>
@@ -148,11 +148,11 @@ function App() {
       {/* Task List */}
       <div className="todo-list">
         {loading ? (
-          <div className="loading">Loading tasks...</div>
+          <div className="loading">Đang tải...</div>
         ) : tasks.length === 0 ? (
           <div className="empty-state">
-            <h3>No tasks yet!</h3>
-            <p>Add your first task above to get started.</p>
+            <h3>Chưa có công việc nào!</h3>
+            <p>Thêm công việc đầu tiên ở trên.</p>
           </div>
         ) : (
           tasks.map(task => (
@@ -172,20 +172,20 @@ function App() {
                     onClick={() => toggleTask(task._id)}
                     className={`btn ${task.completed ? 'btn-secondary' : ''}`}
                   >
-                    {task.completed ? 'Undo' : 'Complete'}
+                    {task.completed ? 'Hoàn thành' : 'Làm'}
                   </button>
                   <button
                     onClick={() => deleteTask(task._id)}
                     className="btn btn-danger"
                   >
-                    Delete
+                    Xóa
                   </button>
                 </div>
               </div>
               <div className="todo-date">
-                Created: {formatDate(task.createdAt)}
+                Tạo: {formatDate(task.createdAt)}
                 {task.updatedAt !== task.createdAt && (
-                  <span> • Updated: {formatDate(task.updatedAt)}</span>
+                  <span> • Sửa: {formatDate(task.updatedAt)}</span>
                 )}
               </div>
             </div>
