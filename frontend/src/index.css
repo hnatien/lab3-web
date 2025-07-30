@@ -78,9 +78,27 @@ h1 {
   background: #fafafa;
 }
 
-.task-text {
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   flex: 1;
   cursor: pointer;
+}
+
+.task-checkbox {
+  font-size: 18px;
+  color: #999;
+  width: 20px;
+  text-align: center;
+}
+
+.task-item.completed .task-checkbox {
+  color: #666;
+}
+
+.task-text {
+  flex: 1;
   padding: 4px 0;
 }
 
@@ -115,4 +133,14 @@ h1 {
   text-align: center;
   color: #666;
   padding: 20px;
+}
+
+.empty-state {
+  text-align: center;
+  color: #999;
+  padding: 40px 20px;
+}
+
+.empty-state p {
+  font-size: 16px;
 }

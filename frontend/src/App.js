@@ -97,21 +97,31 @@ function App() {
       <div className="task-list">
         {loading ? (
           <div className="loading">Loading...</div>
+        ) : tasks.length === 0 ? (
+          <div className="empty-state">
+            <p>No tasks yet. Add one above!</p>
+          </div>
         ) : (
           tasks.map(task => (
             <div 
               key={task._id} 
               className={`task-item ${task.completed ? 'completed' : ''}`}
             >
-              <span 
-                className="task-text"
+              <div 
+                className="task-content"
                 onClick={() => toggleTask(task._id)}
               >
-                {task.title}
-              </span>
+                <span className="task-checkbox">
+                  {task.completed ? '✓' : '○'}
+                </span>
+                <span className="task-text">
+                  {task.title}
+                </span>
+              </div>
               <button
                 onClick={() => deleteTask(task._id)}
                 className="delete-btn"
+                title="Delete task"
               >
                 ×
               </button>
